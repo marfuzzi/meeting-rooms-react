@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 
 import Header from '../blocks/Header';
 import TimeLine from '../blocks/TimeLine';
-import Schedule from './Schedule';
+import ScheduleRooms from './ScheduleRooms';
 import CurrentDate from './CurrentDate';
 
 class MainPage extends Component {
@@ -27,7 +27,7 @@ class MainPage extends Component {
                         <TimeLine startHour={this.state.startHour} endHour={this.state.endHour}/>
                     </div>
                     <div className="main__schedule">
-                        <Schedule />
+                        <ScheduleRooms />
                     </div>
                 </div>
             </div>

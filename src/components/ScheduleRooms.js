@@ -7,7 +7,7 @@ import gql from 'graphql-tag';
 // import TimeLine from '../blocks/TimeLine';
 // import TimeLine from './Schedule';
 
-class Schedule extends Component {
+class ScheduleRooms extends Component {
     constructor(props) {
         super(props);
     }
@@ -20,6 +20,6 @@ class Schedule extends Component {
     }
 }
 
-export default Schedule;
+export default ScheduleRooms;
 
 
