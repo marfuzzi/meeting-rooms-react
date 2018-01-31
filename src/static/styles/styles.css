@@ -1,4 +1,4 @@
-body {
+.body {
   height: 100%;
   font-family: 'HelveticaNeue', 'Open Sans', 'Arial', sans-serif;
   font-size: 13px;
@@ -830,6 +830,7 @@ html {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   overflow: auto;
+  overflow-x: hidden
 }
 
 .schedule__rooms::-webkit-scrollbar {

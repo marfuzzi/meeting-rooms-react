@@ -42,14 +42,13 @@ class NotFound extends Component {
 class Main extends Component {
     render() {
         return (
-            <div className="content">
-                <Switch>
-                    <Route exact path="/" component={MainPage} />
-                    <Route path="/create" component={CreatePage} />
-                    <Route path="/edit" component={EditPage} />
-                    <Route component={NotFound} />
-                </Switch>
-            </div>
+            <Switch>
+                <Route exact path="/" component={MainPage} />
+                <Route path="/create" component={CreatePage} />
+                <Route path="/edit" component={EditPage} />
+                <Route component={NotFound} />
+            </Switch>
+
         )
     }
 }

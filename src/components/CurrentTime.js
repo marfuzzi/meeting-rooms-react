@@ -33,13 +33,13 @@ class CurrentTime extends Component {
         );
 
         function calculatePosition(currentTime, currentDay, startHour, endHour) {
-            const timelineStart = Number(moment(currentDay).add(7.5, 'h'));
-            const timelineEnd = Number(moment(currentDay).add(23.5, 'h'));
+            const gridStart = Number(moment(currentDay).add(7.5, 'h'));
+            const gridEnd = Number(moment(currentDay).add(23.5, 'h'));
             const current = Number(moment(currentTime));
-            const columnsDiff = timelineEnd - timelineStart;
-            const leftCurrDiff = current - timelineStart;
+            const columnsCount = gridEnd - gridStart;
+            const leftPadding = current - gridStart;
             return {
-                left: `${leftCurrDiff/columnsDiff*100}%`,
+                left: `${leftPadding/columnsCount*100}%`,
             };
         }
     }
