@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
-import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
 
 class CurrentDate extends Component {
     constructor(props) {

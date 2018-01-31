@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 
 class Header extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     _renderButtonCreate() {
         const { buttonCreate } = this.props;

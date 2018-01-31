@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-
 import { groupBy, map } from 'lodash';
-import { concat } from 'async';
 
 import RoomEvents from './RoomEvents'
 
 class Room extends Component {
-    constructor(props) {
-        super(props);
-    };
 
     render() {
         const { title, capacity, eventsGroup, room } = this.props;

@@ -60,12 +60,12 @@ function createData () {
       dateEnd: oneHourLater
     },
     {
-      title: '👾 Хакатон 👾',
+      title: 'Хакатон',
       dateStart: oneHourLater,
       dateEnd: twoHoursLater
     },
     {
-      title: '🍨 Пробуем kefir.js',
+      title: 'Пробуем kefir.js',
       dateStart: twoHoursLater,
       dateEnd: threeHoursLater
     }

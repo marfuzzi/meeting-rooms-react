@@ -3,10 +3,6 @@ import React, { Component } from 'react';
 import Button from './Button';
 
 class Input extends Component {
-    constructor(props) {
-        super(props);
-
-    }
 
     _renderButton() {
         const {button} = this.props;

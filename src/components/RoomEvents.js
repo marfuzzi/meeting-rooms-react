@@ -4,7 +4,7 @@ import EventBusy from './EventBusy'
 
 class RoomEvents extends Component {
     render() {
-        const { eventsData, room } = this.props;
+        const { eventsData} = this.props;
 
         return (
             <div className="room__events">

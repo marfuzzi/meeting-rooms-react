@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import { startHour, endHour } from '../utils/constants';
 
 class TimeLine extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     _renderTimeLine() {
         return new Array(endHour - startHour + 1).fill().map((t, i) => {
