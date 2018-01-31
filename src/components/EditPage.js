@@ -7,22 +7,22 @@ import Header from '../blocks/Header';
 import Input from '../blocks/Input';
 import Button from '../blocks/Button';
 
-class CreatePage extends Component {
+class EditPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
             buttonCreate:false,
-            createPage:true
+            editPage:true
         };
     }
     render() {
         return(
             <div className="wrapper__event">
-                <Header  buttonCreate={this.state.buttonCreate}/>
+                <Header buttonCreate={this.state.buttonCreate}/>
                 <main className="event-page">
                     <div className="event-page__content">
                         <div className="event-page__title">
-                            <div className="h1"> Новая встреча</div>
+                            <div className="h1"> Редактирование встречи</div>
                             <a href="/">
                                 <Button
                                     type="circle"
@@ -36,8 +36,8 @@ class CreatePage extends Component {
                                     input = "input"
                                     name = "theme"
                                     placeholder = "О чем будем говорить"
-                                    value = ""
-                                    button = ""
+                                    value = "Тестовое задание в ШРИ"
+                                    button = "close"
                                     block = "Тема"
                                 />
                             </div>
@@ -92,7 +92,7 @@ class CreatePage extends Component {
                                 </div>
                             </div>
                             <div className="event-page__ceil">
-                                <label className="input__label">Рекомендованные переговорки</label>
+                                <label className="input__label">Ваша переговорка</label>
                             </div>
                         </div>
                     </div>
@@ -102,4 +102,4 @@ class CreatePage extends Component {
     }
 }
 
-export default CreatePage;
+export default EditPage;

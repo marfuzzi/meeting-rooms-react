@@ -5,6 +5,7 @@ import gql from 'graphql-tag';
 
 import MainPage from './MainPage';
 import CreatePage from './CreatePage';
+import EditPage from './EditPage';
 
 const UsersList = ({ data: {loading, error, users }}) => {
     if (loading && !users) {
@@ -45,6 +46,7 @@ class Main extends Component {
                 <Switch>
                     <Route exact path="/" component={MainPage} />
                     <Route path="/create" component={CreatePage} />
+                    <Route path="/edit" component={EditPage} />
                     <Route component={NotFound} />
                 </Switch>
             </div>
