@@ -7,14 +7,13 @@ import Header from '../blocks/Header';
 import TimeLine from '../blocks/TimeLine';
 import ScheduleRooms from './ScheduleRooms';
 import CurrentDate from './CurrentDate';
+import Grid from '../blocks/Grid';
 
 class MainPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            buttonCreate:true,
-            startHour:8,
-            endHour:23
+            buttonCreate:true
         };
     }
     render() {
@@ -24,10 +23,11 @@ class MainPage extends Component {
                 <div className="main">
                     <div className="main__timeline">
                         <CurrentDate />
-                        <TimeLine startHour={this.state.startHour} endHour={this.state.endHour}/>
+                        <TimeLine/>
                     </div>
                     <div className="main__schedule">
                         <ScheduleRooms />
+                        <Grid/>
                     </div>
                 </div>
             </div>

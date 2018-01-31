@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { startHour, endHour } from '../utils/constants';
 
 class TimeLine extends Component {
     constructor(props) {
@@ -6,7 +7,6 @@ class TimeLine extends Component {
     }
 
     _renderTimeLine() {
-        const { startHour, endHour } = this.props
         return new Array(endHour - startHour + 1).fill().map((t, i) => {
             let hour = i + 8;
             hour = (hour === 8) ? `${hour + ':00'}` : hour;
