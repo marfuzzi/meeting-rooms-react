@@ -44,7 +44,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "reset-db": "rm -f server/db.sqlite3 && node server/create-mock-data.js",
-    "dev": "nodemon server/index.js"
+    "reset-db": "rm -f db.sqlite3 && node server/create-mock-data.js",
+    "start-prod": "npm run reset-db && nodemon server/index.js"
   }
 }
