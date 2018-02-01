@@ -55,8 +55,6 @@ module.exports = {
   removeUserFromEvent (root, { id, userId }, context) {
     return models.Event.findById(id)
             .then(event => {
-              // event.removeUser(userId);
-              // return event;
               return event.removeUser(userId)
                       .then(() => event);
             });
