@@ -44,6 +44,61 @@ function createData () {
       title: '14',
       capacity: 6,
       floor: 3
+    },
+    {
+      title: 'Прачечная',
+      capacity: 5,
+      floor: 4
+    },
+    {
+      title: 'Мариванна',
+      capacity: 6,
+      floor: 5
+    },
+    {
+      title: 'Джокер',
+      capacity: 10,
+      floor: 5
+    },
+    {
+      title: 'Красная икра',
+      capacity: 5,
+      floor: 4
+    },
+    {
+      title: 'Минкульт',
+      capacity: 10,
+      floor: 5
+    },
+    {
+      title: 'Оранжевое солнце',
+      capacity: 10,
+      floor: 3
+    },
+    {
+      title: 'Оранжевый верблюд',
+      capacity: 4,
+      floor: 3
+    },
+    {
+      title: '4.Сыра',
+      capacity: 6,
+      floor: 5
+    },
+    {
+      title: 'YellowSubmarine',
+      capacity: 8,
+      floor: 6
+    },
+    {
+      title: 'Kino',
+      capacity: 6,
+      floor: 7
+    },
+    {
+      title: 'Синий Кит',
+      capacity: 10,
+      floor: 6
     }
   ]);
 
