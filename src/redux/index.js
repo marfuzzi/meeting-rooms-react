@@ -4,17 +4,15 @@ import moment from 'moment';
 import history from '../history'
 
 const initialState = {
-  currentDate: Number(moment(new Date()).startOf('day'))
+  selectedDate: moment()
 };
 
-const setDateReducer = (state = initialState.currentDate, action) => {
+const setDateReducer = (state = initialState.selectedDate, action) => {
   switch (action.type) {
-    case 'SET_DATE':
-      return action.payload;
-    case 'INCREASE_DATE':
-      return moment(state).add(1,'day').valueOf();
-    case 'DECREASE_DATE':
-      return moment(state).subtract(1,'day').valueOf();
+    case 'BEFORE_DATE':
+      return moment(state).subtract(1,'day');
+    case 'AFTER_DATE':
+      return moment(state).add(1,'day');
     default:
       return state
   }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import moment from 'moment'
 import { startHour, endHour } from '../utils/constants';
 import store from '../redux';
+import { connect } from 'react-redux';
 
 class CurrentTime extends Component {
     constructor(props) {
@@ -25,16 +26,15 @@ class CurrentTime extends Component {
       });
     }
 
-    _renderCurrentTime() {
-        const selectedDate = store.getState().selectedDate;
+    _renderCurrentTime(selectedDate) {
         const position = calculatePosition(this.state.time, selectedDate, startHour, endHour);
         return (
             <div className="currentTime" style={{ ...position }} />
         );
 
         function calculatePosition(currentTime, currentDay, startHour, endHour) {
-            const gridStart = Number(moment(currentDay).add(7.5, 'h'));
-            const gridEnd = Number(moment(currentDay).add(23.5, 'h'));
+            const gridStart = Number(selectedDate.startOf('day').add(7.5, 'h'));
+            const gridEnd = Number(selectedDate.startOf('day').add(23.5, 'h'));
             const current = Number(moment(currentTime));
             const columnsCount = gridEnd - gridStart;
             const leftPadding = current - gridStart;
@@ -45,15 +45,21 @@ class CurrentTime extends Component {
     }
 
     render() {
-        const selectedDate = store.getState().selectedDate;
-        if (!moment(selectedDate).isSame(moment(this.state.time), 'day')) {
+        let selectedDate = this.props.selectedDate;
+        if (!selectedDate.isSame(moment(this.state.time), 'day')) {
             return null;
         }
 
     return (
-        <div>{this._renderCurrentTime()}</div>
+        <div>{this._renderCurrentTime(selectedDate)}</div>
     )
     }
 }
 
-export default CurrentTime;
+const mapStateToProps = function(store) {
+    return {
+        selectedDate: store.selectedDate
+    };
+}
+
+export default connect(mapStateToProps)(CurrentTime);

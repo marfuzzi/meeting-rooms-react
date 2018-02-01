@@ -10,15 +10,15 @@ class EventBusy extends Component {
         const dateStart = moment(Date.parse(eventData.dateStart));
         const dateEnd = moment(Date.parse(eventData.dateEnd));
 
-        if (!moment(selectedDate).isSame(moment(Number(dateStart)), 'day')) {
+        if (!selectedDate.isSame(moment(Number(dateStart)), 'day')) {
             return null;
         }
 
         const position = calculatePosition(dateStart, dateEnd , selectedDate, startHour, endHour);
 
         function calculatePosition(dateStart, dateEnd , selectedDate, startHour, endHour) {
-            const gridStart = Number(moment(selectedDate).add(8, 'h'));
-            const gridEnd = Number(moment(selectedDate).add(23, 'h'));
+            const gridStart = Number(selectedDate.startOf('day').add(8, 'h'));
+            const gridEnd = Number(selectedDate.startOf('day').add(23, 'h'));
             const columnsCount = gridEnd - gridStart;
             let leftPadding = dateStart - gridStart;
             let rightPadding = gridEnd - dateEnd;
