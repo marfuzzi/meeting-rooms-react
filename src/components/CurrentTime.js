@@ -8,7 +8,7 @@ class CurrentTime extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            time: new Date().toLocaleString(),
+            time: moment()
         };
     }
 
@@ -22,7 +22,7 @@ class CurrentTime extends Component {
 
     tick() {
       this.setState({
-        time: new Date().toLocaleString()
+        time: moment()
       });
     }
 
@@ -37,9 +37,12 @@ class CurrentTime extends Component {
             const gridEnd = Number(selectedDate.startOf('day').add(23.5, 'h'));
             const current = Number(moment(currentTime));
             const columnsCount = gridEnd - gridStart;
-            const leftPadding = current - gridStart;
+            let leftPadding = current - gridStart;
+            let left = leftPadding/columnsCount*100;
+            if (left < 0) left = 0
+            if (left > 96.875) left = 96.875
             return {
-                left: `${leftPadding/columnsCount*100}%`,
+                left: `${left}%`,
             };
         }
     }

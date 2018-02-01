@@ -23,8 +23,8 @@ class EventBusy extends Component {
             let leftPadding = dateStart - gridStart;
             let rightPadding = gridEnd - dateEnd;
 
-            if(leftPadding<0) leftPadding = 0;
-            if(rightPadding<0) rightPadding = 0
+            if (leftPadding < 0) leftPadding = 0;
+            if (rightPadding < 0) rightPadding = 0;
 
             return {
                 left: `${leftPadding/columnsCount*100}%`,
