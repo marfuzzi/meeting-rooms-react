@@ -31,7 +31,7 @@ node create-mock-data.js
 ```
 3. Запускаем сервер:
 ```
-nodemon server/index.js
+nodemon index.js
 ```
 Слушаем сервер на http://localhost:5050
 
