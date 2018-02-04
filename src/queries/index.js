@@ -55,6 +55,21 @@ mutation CreateEvent($eventInput: EventInput!, $usersIds: [ID], $roomId: ID!) {
     }
 }`;
 
+export const REMOVE_EVENT_MUTATION = gql`
+mutation RemoveEvent($id: ID!) {
+    removeEvent(id: $id) {
+        id
+    }
+}`;
+
+export const UPDATE_EVENT_MUTATION = gql`
+mutation UpdateEvent($id: ID!, $eventInput: EventInput!, $usersIds: [ID], $roomId: ID) {
+    updateEvent(id: $id, input: $eventInput, usersIds: $usersIds, roomId: $roomId) {
+        id
+        title
+    }
+}`;
+
 export const GET_EVENTS_QUERY = gql`
 query GetEvents {
     events {

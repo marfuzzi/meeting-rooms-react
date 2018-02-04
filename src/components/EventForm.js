@@ -11,12 +11,30 @@ import Calendar from './Calendar';
 import UserOptions from './UserOptions';
 import Recomendation from './Recomendation';
 import CreateEvent from './CreateEvent';
+import DeleteEvent from './DeleteEvent';
+import EditEvent from './EditEvent';
 
 class EventForm extends Component {
     constructor(props) {
         super(props);
 
-        let title, date, startTime, endTime, room;
+        let title, date, startTime, endTime, room, users,
+            titleValid, dateValid, timeValid, formValid, usersValid;
+
+        if (this.props.event) {
+            let eventState = this.props.event;
+            title = eventState.title;
+            room = eventState.room;
+            date = eventState.date;
+            startTime = eventState.startTime;
+            endTime = eventState.endTime;
+            users = eventState.users;
+            titleValid = true;
+            dateValid = true;
+            timeValid = true;
+            formValid= true;
+            usersValid= true;
+        }
 
         this.state = {
             buttonCreate:false,
@@ -26,17 +44,19 @@ class EventForm extends Component {
             showEndTime:false,
             showSelectedUser: false,
 
-            titleValid: false,
-            dateValid: false,
-            timeValid: false,
-            formValid: false,
-            usersValid: false,
+            titleValid: titleValid || false,
+            dateValid: dateValid || false,
+            timeValid: timeValid || false,
+            formValid: formValid || false,
+            usersValid: usersValid || false,
+
+            recomendation: false,
 
             title: title || '',
             date: date || '',
             startTime: startTime || '',
             endTime: endTime || '',
-            users: [],
+            users: users || [],
             room: room,
             formErrors: {title: '', date: '', time: '', users: ''}
         };
@@ -79,6 +99,13 @@ class EventForm extends Component {
     _addRoom = (room) => {
         this.setState({
             room: room
+        })
+    };
+
+    _resetRoom = (room) => {
+        this.setState({
+            recomendation: true,
+            room: ''
         })
     };
 
@@ -166,8 +193,11 @@ class EventForm extends Component {
 
     render() {
         const day = moment().format('DD.MM.YYYY');
-        let title = (this.props.typeForm === "create") ? "Новая встреча" : "Редактирование встречи";
-        let labelRooms = (this.props.typeForm === "create") ? "Рекомендованные переговорки" : "Ваша переговорка";
+        const typeForm = this.props.typeForm;
+        const recomendation = this.state.recomendation;
+        let title = (typeForm === "create") ? "Новая встреча" : "Редактирование встречи";
+        let labelRooms = (typeForm === "create" || recomendation) ? "Рекомендованные переговорки" : "Ваша переговорка";
+
         return(
             <div className="wrapper_event">
                 <Header buttonCreate={this.state.buttonCreate} />
@@ -268,10 +298,24 @@ class EventForm extends Component {
                                 </div>
                             </div>
                             <div className="event-page__ceil">
-                            <label className="input__label">{labelRooms}</label>
-                            {this.props.typeForm === "create" &&
-                                <Recomendation onClick = {this._addRoom} room= {this.state.room}/>
-                            }
+                                <label className="input__label">{labelRooms}</label>
+                                {(typeForm === "create" || recomendation) &&
+                                    <Recomendation onClick = {this._addRoom} room= {this.state.room}/>
+                                }
+                                { (typeForm === "edit" && !recomendation) &&
+                                    <div className="input">
+                                        <Button
+                                            type="icon"
+                                            name="close"
+                                            onClick = {this._resetRoom}
+                                        />
+                                        <div className="input__field input__field_meeting">
+                                            <span className="meeting-time"> {this.state.startTime}—{this.state.endTime}</span>
+                                            <span className="meeting-time">{this.state.room.title} · {this.state.room.floor} этаж</span>
+                                        </div>
+
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>
@@ -280,7 +324,24 @@ class EventForm extends Component {
                     <Link to="/">
                         <button className="button button_cancel">Отмена</button>
                     </Link>
-                    {this.props.typeForm === "create" &&
+                    { typeForm === "edit" &&
+                        <DeleteEvent
+                           eventId={this.props.event.id}
+                        />
+                    }
+                    { typeForm === "edit" &&
+                        <EditEvent
+                            eventId={this.props.event.id}
+                            title={this.state.title}
+                            date={this.state.date}
+                            startTime={this.state.startTime}
+                            endTime={this.state.endTime}
+                            users={this.state.users}
+                            room={this.state.room}
+                            formValid={this.state.formValid}
+                        />
+                    }
+                    { typeForm === "create" &&
                         <CreateEvent
                             title={this.state.title}
                             date={this.state.date}

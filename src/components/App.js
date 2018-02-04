@@ -17,7 +17,7 @@ class Main extends Component {
             <Switch>
                 <Route exact path="/" component={MainPage} />
                 <Route path="/create" component={CreatePage} />
-                <Route path="/edit" component={EditPage} />
+                <Route path="/edit/:eventId" component={EditPage} />
                 <Route component={NotFound} />
             </Switch>
 

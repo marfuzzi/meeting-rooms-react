@@ -31,7 +31,7 @@ class Tooltip extends Component {
         return (
             <div className="tooltip">
                 <div className="tooltip__logo">
-                    <Link to="/edit">
+                    <Link to={"/edit/" + event.id}>
                         <Button
                             type="circle"
                             name="edit"
