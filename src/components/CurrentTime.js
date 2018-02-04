@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import moment from 'moment'
+import moment from 'moment';
 import { startHour, endHour } from '../utils/constants';
-import store from '../redux';
 import { connect } from 'react-redux';
 
 class CurrentTime extends Component {
@@ -53,9 +52,9 @@ class CurrentTime extends Component {
             return null;
         }
 
-    return (
-        <div>{this._renderCurrentTime(selectedDate)}</div>
-    )
+        return (
+            <div>{this._renderCurrentTime(selectedDate)}</div>
+        )
     }
 }
 

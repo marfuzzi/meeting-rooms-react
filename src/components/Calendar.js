@@ -1,27 +1,53 @@
 import React, { Component } from 'react';
-import store from '../redux';
+
 import Button from '../blocks/Button';
-import moment from 'moment';
+import CalendarMonth from './CalendarMonth';
 
 class Calendar extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            selectedMonth: 0
+        };
     }
 
+    _renderMonths = (count) => {
+        return new Array(count).fill().map((_, i) => {
+            return(
+                <CalendarMonth key={i} count={i}
+                    selectedMonth={this.state.selectedMonth}
+                    onClick={this.props.onClick}
+                />
+            )
+        });
+    }
+
+    _beforeMonth = () => {
+        this.setState({
+            selectedMonth: this.state.selectedMonth - 1
+        });
+    };
+
+    _afterMonth = () => {
+        this.setState({
+            selectedMonth: this.state.selectedMonth + 1
+        });
+    };
+
     render() {
-        const {count} = this.props;
         return(
             <div className="calendar">
-                <div className="calendar__arrow">
+                <div className="calendar__arrow" onClick={this._beforeMonth}>
                     <Button type="circle" name="arrow-left"/>
                 </div>
-                <div className="currentDate__title"></div>
-                <div className="calendar__arrow">
+                <div className="calendar__months">
+                    {this._renderMonths(this.props.count)}
+                </div>
+                <div className="calendar__arrow" onClick={this._afterMonth}>
                     <Button type="circle" name="arrow-left"/>
                 </div>
             </div>
         )
     }
 }
-
 export default Calendar;

@@ -5,7 +5,7 @@ import CurrentTime from '../components/CurrentTime';
 
 class Grid extends Component {
     _renderGrid() {
-        return new Array(endHour - startHour + 1).fill().map((t, i) => {
+        return new Array(endHour - startHour + 1).fill().map((_, i) => {
             return (
                 <div key={i} className="grid" >
                     <div className="grid__line"></div>

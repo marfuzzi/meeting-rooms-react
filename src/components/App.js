@@ -6,9 +6,9 @@ import CreatePage from './CreatePage';
 import EditPage from './EditPage';
 
 class NotFound extends Component {
-  render() {
-    return <h2>Страница не найдена</h2>
-  }
+    render() {
+        return <h2>Страница не найдена</h2>
+    }
 }
 
 class Main extends Component {

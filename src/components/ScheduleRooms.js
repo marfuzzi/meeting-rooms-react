@@ -3,7 +3,7 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { groupBy, map } from 'lodash';
 
-import RoomEvents from './RoomEvents'
+import RoomEvents from './RoomEvents';
 
 class Room extends Component {
 
@@ -53,10 +53,10 @@ const ScheduleRooms = ({ data: { loading, error, rooms, events } }) => {
 const RoomsEventsQuery = gql`
   query Query {
     rooms {
-      id
-      title
-      capacity
-      floor
+        id
+        title
+        capacity
+        floor
     }
     events {
         id
@@ -64,7 +64,7 @@ const RoomsEventsQuery = gql`
         dateStart
         dateEnd
         room {
-          id
+            id
         }
     }
 }

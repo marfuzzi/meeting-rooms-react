@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { startHour, endHour } from '../utils/constants';
-import store from '../redux';
 import moment from 'moment';
+import { connect } from 'react-redux';
 
 class EventBusy extends Component {
     render() {
         const { eventData } = this.props;
-        const selectedDate = store.getState().selectedDate;
         const dateStart = moment(Date.parse(eventData.dateStart));
         const dateEnd = moment(Date.parse(eventData.dateEnd));
+        let selectedDate = this.props.selectedDate;
 
         if (!selectedDate.isSame(moment(Number(dateStart)), 'day')) {
             return null;
@@ -37,4 +37,11 @@ class EventBusy extends Component {
     }
 }
 
-export default EventBusy;
+const mapStateToProps = function(store) {
+    return {
+        selectedDate: store.selectedDate
+    };
+}
+
+export default connect(mapStateToProps)(EventBusy);
+
