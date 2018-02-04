@@ -13,6 +13,8 @@ const setDateReducer = (state = initialState.selectedDate, action) => {
       return moment(state).subtract(1,'day');
     case 'AFTER_DATE':
       return moment(state).add(1,'day');
+    case 'CHANGE_DATE':
+      return action.value
     default:
       return state
   }

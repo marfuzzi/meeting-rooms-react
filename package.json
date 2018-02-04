@@ -24,6 +24,8 @@
     "react-apollo": "^2.0.4",
     "react-bootstrap": "^0.32.0",
     "react-dom": "^16.2.0",
+    "react-inlinesvg": "^0.7.5",
+    "react-onclickout": "^2.0.8",
     "react-redux": "5.0.6",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^5.0.0-alpha.9",
