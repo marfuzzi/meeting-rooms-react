@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import { withRouter } from 'react-router-dom';
-import { graphql, compose } from 'react-apollo';
+import { Link } from 'react-router-dom';
 
 class CreateEvent extends Component {
     constructor(props) {
@@ -24,14 +23,13 @@ class CreateEvent extends Component {
         const classDisabled = (isDisabled) ? " disabled" : " ";
 
         return (
-            <a href="/#popup">
+            <Link to="/#popup">
                 <button className={"button" + classDisabled}  disabled={isDisabled}>
                     Создать встречу
                 </button>
-            </a>
+            </Link>
         )
     }
 }
 
 export default CreateEvent;
-

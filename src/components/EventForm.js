@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import ClickOutHandler from 'react-onclickout';
@@ -166,6 +167,7 @@ class EventForm extends Component {
     render() {
         const day = moment().format('DD.MM.YYYY');
         let title = (this.props.typeForm === "create") ? "Новая встреча" : "Редактирование встречи";
+        let labelRooms = (this.props.typeForm === "create") ? "Рекомендованные переговорки" : "Ваша переговорка";
         return(
             <div className="wrapper_event">
                 <Header buttonCreate={this.state.buttonCreate} />
@@ -173,12 +175,12 @@ class EventForm extends Component {
                     <div className="event-page__content">
                         <div className="event-page__title">
                             <div className="h1">{title}</div>
-                            <a href="/">
+                            <Link to="/">
                                 <Button
                                     type="circle"
                                     name="close"
                                 />
-                            </a>
+                            </Link>
                         </div>
                         <div className="event-page__row">
                             <div className="event-page__ceil">
@@ -266,16 +268,18 @@ class EventForm extends Component {
                                 </div>
                             </div>
                             <div className="event-page__ceil">
-                                <label className="input__label">Рекомендованные переговорки</label>
+                            <label className="input__label">{labelRooms}</label>
+                            {this.props.typeForm === "create" &&
                                 <Recomendation onClick = {this._addRoom} room= {this.state.room}/>
+                            }
                             </div>
                         </div>
                     </div>
                 </main>
                 <footer className="footer">
-                    <a href="/">
+                    <Link to="/">
                         <button className="button button_cancel">Отмена</button>
-                    </a>
+                    </Link>
                     {this.props.typeForm === "create" &&
                         <CreateEvent
                             title={this.state.title}

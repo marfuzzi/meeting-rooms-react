@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Header extends Component {
 
     render() {
         return (
             <header className="header">
-                <div className="header__sideLeft"><a className="logo" href="/"></a></div>
+                <div className="header__sideLeft">
+                    <Link className="logo" to="/" />
+                </div>
                 {this.props.buttonCreate &&
                     <div className="header__sideRight">
-                        <a href="/create">
+                        <Link to="/create">
                             <button className="button buttonCreate">Создать встречу</button>
-                        </a>
+                        </Link>
                     </div>
                 }
             </header>

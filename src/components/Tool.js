@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import Icon from '../blocks/Icon';
 
 class Tool extends Component {
     render() {
         return(
-            <div className="tool">
-                <Icon name='plus'/>
-            </div>
+            <Link to="/create">
+                <div className="tool" style={this.props.toolStyle} >
+                    <Icon name="plus"/>
+                </div>
+            </Link>
         )
     }
 }
