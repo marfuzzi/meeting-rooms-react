@@ -20,8 +20,30 @@ query RoomsQuery {
     }
 }`;
 
-export const CREATE_EVENT_QUERY = gql`
-mutation CreateEvent($eventInput: EventInput!, $usersIds: [ID], $roomId: ID!, ) {
+export const GET_EVENT_QUERY = gql`
+    query Event($id: ID!) {
+        event(id: $id) {
+        title
+        id
+        dateStart
+        dateEnd
+        room {
+            id
+            title
+            floor
+            capacity
+        }
+        users {
+            id
+            login
+            avatarUrl
+            homeFloor
+        }
+    }
+}`;
+
+export const CREATE_EVENT_MUTATION = gql`
+mutation CreateEvent($eventInput: EventInput!, $usersIds: [ID], $roomId: ID!) {
     createEvent(input: $eventInput, usersIds: $usersIds, roomId: $roomId) {
         title
         dateStart

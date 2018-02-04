@@ -2,8 +2,30 @@ import React, { Component } from 'react';
 import { startHour, endHour } from '../utils/constants';
 import moment from 'moment';
 import { connect } from 'react-redux';
+import ClickOutHandler from 'react-onclickout';
+
+import Tooltip from './Tooltip';
 
 class EventBusy extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            showTooltip:false,
+        }
+    }
+
+    _onClickOut = () => {
+        this.setState({
+            showTooltip:false
+        });
+    }
+
+    _showTooltip = () => {
+        this.setState({
+            showTooltip:true
+        });
+    };
+
     render() {
         const { eventData } = this.props;
         const dateStart = moment(Date.parse(eventData.dateStart));
@@ -31,8 +53,13 @@ class EventBusy extends Component {
                 right: `${rightPadding/columnsCount*100}%`
             };
         }
+
         return (
-            <div className="event event__busy" style={{...position}}></div>
+            <ClickOutHandler onClickOut={this._onClickOut}>
+                <div className="event event__busy" style={{...position}} onClick = {this._showTooltip}>
+                    {this.state.showTooltip && <Tooltip eventId = {eventData.id}/>}
+                </div>
+            </ClickOutHandler>
         )
     }
 }
@@ -44,4 +71,3 @@ const mapStateToProps = function(store) {
 }
 
 export default connect(mapStateToProps)(EventBusy);
-

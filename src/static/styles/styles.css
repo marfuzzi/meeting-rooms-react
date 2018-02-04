@@ -996,7 +996,7 @@ html {
 }
 
 .tooltip {
-  display: none;
+  display: block;
   position: absolute;
   top: 100%;
   width: 338px;

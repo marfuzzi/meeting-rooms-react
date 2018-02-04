@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { graphql, compose } from 'react-apollo';
 import moment from 'moment';
 
-import { CREATE_EVENT_QUERY, GET_EVENTS_QUERY } from '../queries';
+import { CREATE_EVENT_MUTATION, GET_EVENTS_QUERY } from '../queries';
 
 class CreateEvent extends Component {
     constructor(props) {
@@ -64,5 +64,5 @@ class CreateEvent extends Component {
 }
 
 export default compose(
-    graphql(CREATE_EVENT_QUERY, {name: 'createEvent'})
+    graphql(CREATE_EVENT_MUTATION, {name: 'createEvent'})
 )(withRouter(CreateEvent))
