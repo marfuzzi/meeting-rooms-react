@@ -20,6 +20,19 @@ query RoomsQuery {
     }
 }`;
 
+export const EVENTS_QUERY = gql`
+query EventsQuery {
+    events {
+        id
+        title
+        dateStart
+        dateEnd
+        room {
+            id
+        }
+    }
+}`;
+
 export const GET_EVENT_QUERY = gql`
     query Event($id: ID!) {
         event(id: $id) {

@@ -300,7 +300,15 @@ class EventForm extends Component {
                             <div className="event-page__ceil">
                                 <label className="input__label">{labelRooms}</label>
                                 {(typeForm === "create" || recomendation) &&
-                                    <Recomendation onClick = {this._addRoom} room= {this.state.room}/>
+                                    <Recomendation
+                                        onClick = {this._addRoom}
+                                        date={this.state.date}
+                                        startTime={this.state.startTime}
+                                        endTime={this.state.endTime}
+                                        users={this.state.users}
+                                        dateValid={this.state.dateValid}
+                                        timeValid={this.state.timeValid}
+                                        />
                                 }
                                 { (typeForm === "edit" && !recomendation) &&
                                     <div className="input">
