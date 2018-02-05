@@ -10,7 +10,7 @@ export default (rooms, users, events, createEvent) => {
     if (recommendRooms.length === 0) {
         return {
             title:"Таких переговорок не найдено. Уменьшите количество участников",
-            result: false
+            result: []
         };
     }
     // 2. Найдем самый удобный этаж встречи
@@ -34,7 +34,6 @@ export default (rooms, users, events, createEvent) => {
     // 4.1. Если в этот день нет событий, то
     if (!eventsThisDay.length > 0) {
         return {
-            title:"НЕТ СОБЫТИЙ",
             result: recommendRooms
         };
     }
@@ -63,7 +62,7 @@ export default (rooms, users, events, createEvent) => {
 
     // 6. Выводим результат
     return {
-        title:"Рекомендуемые",
+        title:"Нет свободных переговорок",
         result: result
     }
 };

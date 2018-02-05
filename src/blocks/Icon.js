@@ -4,11 +4,9 @@ class Icon extends Component {
 
     render() {
         const { name } = this.props;
-        const divStyle = {
-            background: `url(../static/images/${name}.svg) no-repeat center`
-        };
+        const iconClass = "icon_" + name;
         return (
-            <div className="icon" style={divStyle}></div>
+            <div className={"icon " + iconClass}></div>
         )
     }
 }

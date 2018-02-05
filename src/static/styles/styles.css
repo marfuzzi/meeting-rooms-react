@@ -567,6 +567,34 @@ html {
   opacity: 1;
 }
 
+.icon_arrow-left {
+    background: url("../../static/images/arrow-left.svg") no-repeat center
+}
+
+.icon_arrow-right {
+  background: url("../../static/images/arrow-right.svg") no-repeat center
+}
+
+.icon_calendar {
+  background: url("../../static/images/calendar.svg") no-repeat center
+}
+
+.icon_close-white {
+  background: url("../../static/images/close-white.svg") no-repeat center
+}
+
+.icon_close {
+  background: url("../../static/images/close.svg") no-repeat center
+}
+
+.icon_edit {
+  background: url("../../static/images/edit.svg") no-repeat center
+}
+
+.icon_plus {
+  background: url("../../static/images/plus.svg") no-repeat center
+}
+
 .input {
   position: relative;
 }

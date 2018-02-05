@@ -9,7 +9,7 @@ import Button from '../blocks/Button';
 import Input from './Input';
 import Calendar from './Calendar';
 import UserOptions from './UserOptions';
-import Recomendation from './Recomendation';
+import Recommendation from './Recommendation';
 import CreateEvent from './CreateEvent';
 import DeleteEvent from './DeleteEvent';
 import EditEvent from './EditEvent';
@@ -50,7 +50,7 @@ class EventForm extends Component {
             formValid: formValid || false,
             usersValid: usersValid || false,
 
-            recomendation: false,
+            recommendation: false,
 
             title: title || '',
             date: date || '',
@@ -104,7 +104,7 @@ class EventForm extends Component {
 
     _resetRoom = (room) => {
         this.setState({
-            recomendation: true,
+            recommendation: true,
             room: ''
         })
     };
@@ -154,8 +154,8 @@ class EventForm extends Component {
 
         switch(fieldName) {
             case 'title':
-                titleValid = value.length <= 10;
-                fieldValidationErrors.title = titleValid ? '': 'Длинное название темы';
+                titleValid = value.length > 2;
+                fieldValidationErrors.title = titleValid ? '': 'Должно быть не менее трех символов';
             break;
             case 'date':
                 dateValid = (/([0-2]\d|3[01])\.(0\d|1[012])\.(\d{4})/).test(value) && value.length === 10;
@@ -194,9 +194,9 @@ class EventForm extends Component {
     render() {
         const day = moment().format('DD.MM.YYYY');
         const typeForm = this.props.typeForm;
-        const recomendation = this.state.recomendation;
+        const recommendation = this.state.recommendation;
         let title = (typeForm === "create") ? "Новая встреча" : "Редактирование встречи";
-        let labelRooms = (typeForm === "create" || recomendation) ? "Рекомендованные переговорки" : "Ваша переговорка";
+        let labelRooms = (typeForm === "create" || recommendation) ? "Рекомендованные переговорки" : "Ваша переговорка";
 
         return(
             <div className="wrapper_event">
@@ -299,8 +299,8 @@ class EventForm extends Component {
                             </div>
                             <div className="event-page__ceil">
                                 <label className="input__label">{labelRooms}</label>
-                                {(typeForm === "create" || recomendation) &&
-                                    <Recomendation
+                                {(typeForm === "create" || recommendation) &&
+                                    <Recommendation
                                         onClick = {this._addRoom}
                                         date={this.state.date}
                                         startTime={this.state.startTime}
@@ -310,7 +310,7 @@ class EventForm extends Component {
                                         timeValid={this.state.timeValid}
                                         />
                                 }
-                                { (typeForm === "edit" && !recomendation) &&
+                                { (typeForm === "edit" && !recommendation) &&
                                     <div className="input">
                                         <Button
                                             type="icon"

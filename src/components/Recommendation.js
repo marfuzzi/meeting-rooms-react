@@ -3,7 +3,7 @@ import { withApollo } from 'react-apollo';
 import { ROOMS_QUERY, USERS_QUERY, EVENTS_QUERY } from '../queries';
 import getRecommendation from '../utils/getRecommendation';
 
-class Recomendation extends React.Component {
+class Recommendation extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -71,20 +71,22 @@ class Recomendation extends React.Component {
             let events = this.state.events;
             let recommendations = getRecommendation(rooms, users, events, createEvent);
 
-            if (recommendations.result){
-                return (
-                    recommendations && recommendations.result.map((room) => {
-                        let isActive = (room.id === this.state.selectedRoom);
-                        const classActive = (isActive) ? " input__field_meeting" : " input__field_recommendation";
-
-                        return (<div className={"input__field" + classActive}
-                            key={room.id} onClick={() => this._onClick(room)} >
-                            <span className="meeting-time">{createEvent.startTime} - {createEvent.endTime}</span>
-                            <span>{room.title} · {room.floor}</span>
-                        </div>)
-                    })
-                )
+            if (recommendations.result.length === 0) {
+                return <div className="grey">{recommendations.title}</div>
             }
+
+            return (
+                recommendations && recommendations.result.map((room) => {
+                    let isActive = (room.id === this.state.selectedRoom);
+                    const classActive = (isActive) ? " input__field_meeting" : " input__field_recommendation";
+
+                    return (<div className={"input__field" + classActive}
+                        key={room.id} onClick={() => this._onClick(room)} >
+                        <span className="meeting-time">{createEvent.startTime} - {createEvent.endTime}</span>
+                        <span>{room.title} · {room.floor}</span>
+                    </div>)
+                })
+            )
         }
 
         return (
@@ -93,4 +95,4 @@ class Recomendation extends React.Component {
     }
 };
 
-export default withApollo(Recomendation);
+export default withApollo(Recommendation);

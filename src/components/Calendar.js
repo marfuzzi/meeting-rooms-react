@@ -44,7 +44,7 @@ class Calendar extends Component {
                     {this._renderMonths(this.props.count)}
                 </div>
                 <div className="calendar__arrow" onClick={this._afterMonth}>
-                    <Button type="circle" name="arrow-left"/>
+                    <Button type="circle" name="arrow-right"/>
                 </div>
             </div>
         )
