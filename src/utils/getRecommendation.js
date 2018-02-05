@@ -44,7 +44,6 @@ export default (rooms, users, events, createEvent) => {
         const eventsInRecommendRoom = eventsThisDay.filter(event => {
             return room.id === event.room.id;
         });
-
         if (eventsInRecommendRoom.length === 0) return;
 
         //5.2 Если есть события сравниваем
@@ -53,8 +52,10 @@ export default (rooms, users, events, createEvent) => {
             const eventEnd = moment(Date.parse(event.dateEnd));
             const createEventStart = moment(createEvent.date, 'DD.MM.YYYY').set({"hours": createEvent.startTime.slice(0, 2), "minutes": createEvent.startTime.slice(3, 5)});
             const createEventEnd = moment(createEvent.date, 'DD.MM.YYYY').set({"hours": createEvent.endTime.slice(0, 2), "minutes": createEvent.endTime.slice(3, 5)});
-
-            if ( !(createEventEnd < eventStart) || (createEventStart > eventEnd)) busyRoom.push(room)
+            const leftCreateEventPosition = (createEventStart < eventEnd) && (createEventEnd <= eventStart);
+            const rightCreateEventPosition = (createEventStart >= eventEnd) && (createEventEnd > eventStart);
+            if ( leftCreateEventPosition || rightCreateEventPosition) return
+            busyRoom.push(room)
         });
     });
     //6. Убираем переговорки в которых есть совпадение времени
