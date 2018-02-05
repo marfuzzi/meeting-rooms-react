@@ -3,7 +3,7 @@ import { startHour, endHour } from '../utils/constants';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import ClickOutHandler from 'react-onclickout';
-
+import $ from 'jquery';
 import Tooltip from './Tooltip';
 
 class EventBusy extends Component {
@@ -20,8 +20,21 @@ class EventBusy extends Component {
         });
     }
 
-    _showTooltip = () => {
+    _showTooltip = (e) => {
+        let left =169; // TODO: убрать статичную ширину
+        const leftBorder = $(e.target).parent().offset().left;
+        const rightBorder = $(e.target).parent().offset().left + $(e.target).parent().width();
+        const rightPadding = rightBorder-($(e.target).offset().left + $(e.target).outerWidth()/2 + left);
+        const leftPadding = $(e.target).offset().left+$(e.target).outerWidth()/2 - left - leftBorder;
+
+        // не выходит за границы
+        if (rightPadding < 0) left = left - rightPadding;
+        if (leftPadding < 0) left = left + leftPadding;
+
         this.setState({
+            toolStyle:{
+                left: 'calc(50% - ' + left + 'px' + ')'
+            },
             showTooltip:true
         });
     };
@@ -57,7 +70,7 @@ class EventBusy extends Component {
         return (
             <ClickOutHandler onClickOut={this._onClickOut}>
                 <div className="event event__busy" style={{...position}} onClick = {this._showTooltip}>
-                    {this.state.showTooltip && <Tooltip eventId = {eventData.id}/>}
+                    {this.state.showTooltip && <Tooltip eventId = {eventData.id} toolStyle={this.state.toolStyle}/>}
                 </div>
             </ClickOutHandler>
         )

@@ -15,14 +15,14 @@ class RoomEvents extends Component {
     }
 
     _onMouseMove = (e) => {
-        var parent = $('.event__available');
-        var tool = $(parent).find('.tool');
-        var parentWidth = $(parent).width();
-        var toolWidth = tool.width();
-        var leftBorder = e.pageX - $(parent).offset().left;
-        var rightBorder = parentWidth - leftBorder;
-        var leftPadding = leftBorder - toolWidth/2;
-        var rightPadding = rightBorder - toolWidth/2;
+        const parent = $('.event__available');
+        const tool = $(parent).find('.tool');
+        const parentWidth = $(parent).width();
+        const toolWidth = tool.width();
+        const leftBorder = e.pageX - $(parent).offset().left;
+        const rightBorder = parentWidth - leftBorder;
+        let leftPadding = leftBorder - toolWidth/2;
+        let rightPadding = rightBorder - toolWidth/2;
 
         if( leftBorder < 0 || rightBorder < 0) return;
         // не выходит за границы

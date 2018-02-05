@@ -29,7 +29,7 @@ class Tooltip extends Component {
         };
 
         return (
-            <div className="tooltip">
+            <div className="tooltip" style={this.props.toolStyle}>
                 <div className="tooltip__logo">
                     <Link to={"/edit/" + event.id}>
                         <Button
