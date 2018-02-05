@@ -33,7 +33,7 @@ class EventBusy extends Component {
 
         this.setState({
             toolStyle:{
-                left: 'calc(50% - ' + left + 'px' + ')'
+                left: "calc(50% - " + left + "px"
             },
             showTooltip:true
         });

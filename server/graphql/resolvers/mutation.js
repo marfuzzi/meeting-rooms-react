@@ -42,11 +42,15 @@ module.exports = {
             });
   },
 
-  updateEvent (root, { id, input }, context) {
+  updateEvent (root, { id, input, usersIds, roomId }) {
     return models.Event.findById(id)
-            .then(event => event.update(input));
+            .then(event => {
+                event.update(input);
+                event.setUsers(usersIds);
+                event.setRoom(roomId);
+                return event;
+            });
   },
-
   removeEvent (root, { id }, context) {
     return models.Event.findById(id)
             .then(event => event.destroy());

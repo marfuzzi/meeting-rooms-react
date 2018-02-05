@@ -49,7 +49,6 @@ class EditEvent extends Component {
             })
         })
     };
-
     render() {
         let isDisabled = this.state.isDisabled;
         const classDisabled = (isDisabled) ? " disabled" : " ";
