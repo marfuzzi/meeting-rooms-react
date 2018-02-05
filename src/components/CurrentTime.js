@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-import { startHour, endHour } from '../utils/constants';
 import { connect } from 'react-redux';
+import Style from 'style-it';
+import { startHour, endHour } from '../utils/constants';
 
 class CurrentTime extends Component {
     constructor(props) {
@@ -27,8 +28,28 @@ class CurrentTime extends Component {
 
     _renderCurrentTime(selectedDate) {
         const position = calculatePosition(this.state.time, selectedDate, startHour, endHour);
+
         return (
+            Style.it(`
+            .currentTime:before {
+                content: '${ this.state.time.format("HH:mm") }';
+                position: absolute;
+                top: -16px;
+                left: -24.5px;
+                width: 49px;
+                height: 20px;
+                border-radius: 100px;
+                background-color: #007dff;
+                font-weight: 700;
+                font-size: 11px;
+                color: #fff;
+                letter-spacing: 0.4px;
+                text-align: center;
+                line-height: 20px;
+              }
+            `,
             <div className="currentTime" style={{ ...position }} />
+            )
         );
 
         function calculatePosition(currentTime, currentDay, startHour, endHour) {
@@ -53,7 +74,9 @@ class CurrentTime extends Component {
         }
 
         return (
-            <div>{this._renderCurrentTime(selectedDate)}</div>
+            <div>
+                {this._renderCurrentTime(selectedDate)}
+            </div>
         )
     }
 }
